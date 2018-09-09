@@ -57,7 +57,9 @@ class App extends Component {
         var r = rgb.split(',')[0];
         var g = rgb.split(',')[1];
         var b = rgb.split(',')[2];
-        r /= 255, g /= 255, b /= 255;
+        r /= 255;
+        g /= 255;
+        b /= 255;
 
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, v = max;
@@ -78,6 +80,8 @@ class App extends Component {
                 case b: 
                     h = (r - g) / d + 4; 
                     break;
+                default:
+                    break;
             }
 
             h /= 6;
@@ -92,7 +96,9 @@ class App extends Component {
         var g = parseInt(result[2], 16);
         var b = parseInt(result[3], 16);
 
-        r /= 255, g /= 255, b /= 255;
+        r /= 255;
+        g /= 255;
+        b /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
 
@@ -111,7 +117,9 @@ class App extends Component {
                 case b: 
                     h = (r - g) / d + 4; 
                     break;
-          }
+                default:
+                    break;
+            }
             h /= 6;
         }
         s = s*100;
@@ -146,7 +154,7 @@ class App extends Component {
             return;
         }
         // BLACK
-        if (r==0 && g==0 && b==0) {
+        if (r === 0 && g === 0 && b === 0) {
             computedK = 1;
             return 'cmyk(0%, 0%, 0%, 100%)';
         }
@@ -161,7 +169,7 @@ class App extends Component {
         computedY = (computedY - minCMY) / (1 - minCMY) ;
         computedK = minCMY;
 
-        return 'cmyk(' + Math.round(computedC) * 100 + '%, ' +Math.round(computedM) * 100 + '%, ' + Math.round(computedY) * 100 + '%, ' + Math.round(computedK) * 100 + '%)';
+        return 'cmyk(' + Math.round(computedC * 100) + '%, ' +Math.round(computedM * 100) + '%, ' + Math.round(computedY * 100) + '%, ' + Math.round(computedK * 100) + '%)';
     }
 
     showColor(unitName) {
@@ -169,18 +177,15 @@ class App extends Component {
         switch (unitName) {
             case 'HEX':
                 return this.state.color;
-                break;
             case 'RGB':
                 return this.convertToRgb(this.state.color);
-                break;
             case 'HSV':
                 return this.convertToHSV(rgb);
-                break;;
             case 'HSL':
                 return this.convertToHSL(this.state.color);
-                break;
             case 'CMYK':
                 return this.convertToCMYK(rgb);
+            default:
                 break;
         }
     }
