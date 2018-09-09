@@ -11,11 +11,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Demo
 
-You can see demo [here]()
+You can see demo [here.]()
 
 ## Built With
 
-* [Reactjs](https://reactjs.org/docs/getting-started.html) - The web framework used
+* [Reactjs](https://reactjs.org/docs/getting-started.html)
 * [Bootstrap](http://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
 ## Authors
