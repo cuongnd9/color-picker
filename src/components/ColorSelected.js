@@ -5,7 +5,7 @@ class ColorSelected extends Component {
 		return (
 			<div className="row">
 			    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			        <div style={{background:this.props.color,padding:'40px'}}></div>
+			        <div style={{background:this.props.color,padding:'50px'}}></div>
 			        <hr/>
 			    </div>
 			</div>
