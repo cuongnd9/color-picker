@@ -4,6 +4,7 @@ import Color from './components/Color';
 import RGB from './components/RGB';
 import HEX from './components/HEX';
 import ColorSelected from './components/ColorSelected';
+import UnitColor from './components/UnitColor';
 
 class App extends Component {
     constructor(props) {
@@ -12,6 +13,8 @@ class App extends Component {
             color: '#000000'
         };
         this.getColor = this.getColor.bind(this);
+        this.getHex = this.getHex.bind(this);
+        this.showColor = this.showColor.bind(this);
     }
 
     getColor(color) {
@@ -20,7 +23,36 @@ class App extends Component {
         });
     }
 
+    getHex(hex) {
+        this.setState({
+            color: hex
+        });
+    }
+
+    convertToRgb(hex) {
+        hex = hex.replace('#','');
+        var r = parseInt(hex.substring(0,2), 16);
+        var g = parseInt(hex.substring(2,4), 16);
+        var b = parseInt(hex.substring(4,6), 16);
+        return 'rgb('+r+','+g+','+b+')';
+    }
+
+    showColor(unitName) {
+        switch (unitName) {
+            case 'HEX':
+                return this.state.color;
+                break;
+            case 'RGB':
+                return this.convertToRgb(this.state.color);
+                break;
+        }
+    }
+
     render() {
+        const units = ['HEX', 'RGB', 'HSV', 'HLS', 'CMYK'];
+
+        var unitElements = units.map((unit, index) => <UnitColor key={index} unitName={unit} color={this.showColor(unit)}/>);
+
         return (
             <div className="container-fluid">
                 <nav className="navbar navbar-default">
@@ -55,47 +87,14 @@ class App extends Component {
                             <div className="panel-body">
                                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <form>
-                                        <HEX color={this.state.color}/>
+                                        <HEX color={this.state.color} getHex={this.getHex}/>
                                         <RGB color={this.state.color}/>
-                                        <Color getColor={this.getColor} /> 
+                                        <Color color={this.state.color} getColor={this.getColor} /> 
                                     </form>
                                 </div>
                                 <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <ColorSelected/>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <span className="label label-info">HEX</span>
-                                            <div style={{textAlign:'right',float:'right'}}>#125478</div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <span className="label label-warning">RGB</span>
-                                            <div style={{textAlign:'right',float:'right'}}>#125478</div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <span className="label label-success">HSV</span>
-                                            <div style={{textAlign:'right',float:'right'}}>#125478</div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <span className="label label-default">HLS</span>
-                                            <div style={{textAlign:'right',float:'right'}}>#125478</div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <span className="label label-danger">CMYK</span>
-                                            <div style={{textAlign:'right',float:'right'}}>#125478</div>
-                                        </div>
-                                    </div>
+                                    <ColorSelected color={this.state.color}/>
+                                    {unitElements}
                                 </div>
                             </div>
                         </div>

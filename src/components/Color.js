@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class Color extends Component {
 	constructor(props) {
         super(props);
-        this.onHandleChange = this.onHandleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-	onHandleChange(event) {
+	handleChange(event) {
 		this.props.getColor(event.target.value);
 	}
 
@@ -18,8 +18,9 @@ class Color extends Component {
 					type="color" 
 					name="input-color" 
 					className="form-control" 
-					title="Color Picker" 
-					onChange={this.onHandleChange}
+					title="Color Picker"
+					value={this.props.color}
+					onChange={this.handleChange}
 				/>
 			</div>
 		);
