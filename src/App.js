@@ -10,7 +10,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            color: '#21c65e'
+            color: '#ff5959'
         };
         this.getColor = this.getColor.bind(this);
         this.getHex = this.getHex.bind(this);
@@ -31,12 +31,13 @@ class App extends Component {
     }
 
     getRgb(rgb) {
-        this.setState({
-            color: this.convertToHex(rgb)
-        });
+        // this.setState({
+        //     color: this.convertToHex(rgb)
+        // });
     }
 
     convertToRgb(hex) {
+        if (hex.length !== 7) return;
         hex = hex.replace('#','');
         var r = parseInt(hex.substring(0,2), 16);
         var g = parseInt(hex.substring(2,4), 16);
@@ -45,6 +46,7 @@ class App extends Component {
     }
 
     convertToHex(rgb) {
+        if (rgb === undefined) return;
         rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
         return (rgb && rgb.length === 4) ? "#" +
         ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
@@ -53,6 +55,7 @@ class App extends Component {
     }
 
     convertToHSV(rgb) {
+        if (rgb === undefined) return;
         rgb = rgb.split('(')[1].split(')')[0];
         var r = rgb.split(',')[0];
         var g = rgb.split(',')[1];
@@ -90,6 +93,7 @@ class App extends Component {
     }
 
     convertToHSL(hex) {
+        if (hex.length !== 7) return;
         var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
         var r = parseInt(result[1], 16);
@@ -131,6 +135,7 @@ class App extends Component {
     }
 
     convertToCMYK(rgb) {
+        if (rgb === undefined) return;
         rgb = rgb.split('(')[1].split(')')[0];
         var r = rgb.split(',')[0];
         var g = rgb.split(',')[1];
@@ -207,7 +212,7 @@ class App extends Component {
                                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <form>
                                         <HEX color={this.state.color} getHex={this.getHex}/>
-                                        <RGB color={this.convertToRgb(this.state.color)} getRgb={this.getRgb}/>
+                                        <RGB color={this.state.color} getRgb={this.getRgb}/>
                                         <Color color={this.state.color} getColor={this.getColor} /> 
                                     </form>
                                 </div>
