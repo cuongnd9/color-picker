@@ -4,9 +4,22 @@ class RGB extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            color: '#ff5959'
+            color: ''
         };
 		this.handleChange = this.handleChange.bind(this);
+		this.convertToRgb = this.convertToRgb.bind(this);
+	}
+
+	componentWillMount() {
+		this.setState({
+			color: this.props.color
+		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			color: nextProps.color
+		});
 	}
 
 	handleChange(event) {
@@ -14,21 +27,11 @@ class RGB extends Component {
 		this.setState({
 			color: value
 		});
+		value =this.convertToHex(value);
+		console.log(value);
 		if (this.checkColor(value)) {
 			this.props.getHex(value);
 		} 
-	}
-
-	checkColor(color) {
-		if (color.length ===7 && color.indexOf('#') === 0) {
-			var result = 0;
-			color = color.split('#')[1].split('');
-			color.forEach( function(element) {
-		    if (isNaN(parseInt(element, 16))) result++;
-		    });
-		    return result === 0;
-		}
-		return false;
 	}
 
 	convertToRgb(hex) {
@@ -40,14 +43,36 @@ class RGB extends Component {
         return 'rgb('+r+','+g+','+b+')';
     }
 
+    convertToHex(rgb) {
+        if (rgb === undefined) return;
+        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+        return (rgb && rgb.length === 4) ? "#" +
+        ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+    }
+
+    checkColor(color) {
+		if (color.length ===7 && color.indexOf('#') === 0) {
+			var result = 0;
+			color = color.split('#')[1].split('');
+			color.forEach( function(element) {
+		    if (isNaN(parseInt(element, 16))) result++;
+		    });
+		    return result === 0;
+		}
+		return false;
+	}
+
 	render() {
+		var color = this.convertToRgb(this.state.color);
 		return (
 			<div className="form-group">
 				<label>RGB</label>
 				<input 
 					type="text" 
 					className="form-control" 
-					value={this.convertToRgb(this.state.color)}
+					value={color}
 					onChange={this.handleChange}
 				/>
 			</div>

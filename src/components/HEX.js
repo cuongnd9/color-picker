@@ -4,9 +4,21 @@ class HEX extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            color: '#ff5959'
+            color: ''
         };
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	componentWillMount() {
+		this.setState({
+			color: this.props.color
+		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			color: nextProps.color
+		});
 	}
 
 	handleChange(event) {

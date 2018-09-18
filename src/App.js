@@ -30,10 +30,10 @@ class App extends Component {
         });
     }
 
-    getRgb(rgb) {
-        // this.setState({
-        //     color: this.convertToHex(rgb)
-        // });
+    getRgb(hex) {
+        this.setState({
+            color: hex
+        });
     }
 
     convertToRgb(hex) {
