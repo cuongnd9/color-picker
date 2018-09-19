@@ -1,17 +1,17 @@
-# Simple Color Picker
+# Color Picker
 
-A simple Color Picker for React beginner.
+A Color Picker using React.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-![screenshot_2018-09-09 color picker](https://user-images.githubusercontent.com/34389409/45264557-c33db600-b468-11e8-9f8f-1c559f7aec9c.png)
+![screenshot_2018-09-09 color picker](https://user-images.githubusercontent.com/34389409/45758759-9485c380-bc50-11e8-943c-b51ad275f312.png)
 
 
 ## Demo
 
-You can see demo [here.]()
+You can see demo [here.](https://color-picker-ndc07.firebaseapp.com/)
 
 ## Built With
 
@@ -22,7 +22,7 @@ You can see demo [here.]()
 
 * **Nguyen Duy Cuong** - *Initial work* - [ndc07](https://github.com/ndc07)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ndc07/color-picker/contributors) who participated in this project.
 
 ## License
 
