@@ -2,12 +2,11 @@
 
 A Color Picker using React.
 
+![screenshot_2018-09-09 color picker](https://user-images.githubusercontent.com/34389409/45758999-21c91800-bc51-11e8-9763-fca774cea7c6.png)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-![screenshot_2018-09-09 color picker](https://user-images.githubusercontent.com/34389409/45758759-9485c380-bc50-11e8-943c-b51ad275f312.png)
-
 
 ## Demo
 
