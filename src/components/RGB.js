@@ -7,7 +7,6 @@ class RGB extends Component {
             color: ''
         };
 		this.handleChange = this.handleChange.bind(this);
-		this.convertToRgb = this.convertToRgb.bind(this);
 	}
 
 	componentWillMount() {
@@ -27,12 +26,12 @@ class RGB extends Component {
 		this.setState({
 			color: value
 		});
-		value =this.convertToHex(value);
-		console.log(value);
-		if (this.checkColor(value)) {
-			this.props.getHex(value);
+		if (this.checkRgb(value)) {
+			this.props.getRgb(value);
 		} 
 	}
+
+
 
 	convertToRgb(hex) {
         if (hex.length !== 7) return;
@@ -64,8 +63,15 @@ class RGB extends Component {
 		return false;
 	}
 
+	checkRgb(rgb) {
+	  var rxValidRgb = /([R][G][B][A]?[(]\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])(\s*,\s*((0\.[0-9]{1})|(1\.0)|(1)))?[)])/i
+	  if (rxValidRgb.test(rgb)) {
+	    return true
+	  }
+	}
+
 	render() {
-		var color = this.convertToRgb(this.state.color);
+		var {color} = this.state;
 		return (
 			<div className="form-group">
 				<label>RGB</label>

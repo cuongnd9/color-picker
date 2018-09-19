@@ -30,9 +30,9 @@ class App extends Component {
         });
     }
 
-    getRgb(hex) {
+    getRgb(rgb) {
         this.setState({
-            color: hex
+            color: this.convertToHex(rgb)
         });
     }
 
@@ -200,6 +200,7 @@ class App extends Component {
 
         var unitElements = units.map((unit, index) => <UnitColor key={index} unitName={unit} color={this.showColor(unit)}/>);
 
+        var rgbColor = this.convertToRgb(this.state.color);
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -212,7 +213,7 @@ class App extends Component {
                                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <form>
                                         <HEX color={this.state.color} getHex={this.getHex}/>
-                                        <RGB color={this.state.color} getRgb={this.getRgb}/>
+                                        <RGB color={rgbColor} getRgb={this.getRgb}/>
                                         <Color color={this.state.color} getColor={this.getColor} /> 
                                     </form>
                                 </div>
