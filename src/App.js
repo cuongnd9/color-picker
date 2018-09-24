@@ -74,14 +74,14 @@ class App extends Component {
             h = 0;
         } else {
             switch (max) {
-                case r: 
-                    h = (g - b) / d + (g < b ? 6 : 0); 
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);
                     break;
-                case g: 
-                    h = (b - r) / d + 2; 
+                case g:
+                    h = (b - r) / d + 2;
                     break;
-                case b: 
-                    h = (r - g) / d + 4; 
+                case b:
+                    h = (r - g) / d + 4;
                     break;
                 default:
                     break;
@@ -112,14 +112,14 @@ class App extends Component {
             var d = max - min;
             s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
             switch(max) {
-                case r: 
-                    h = (g - b) / d + (g < b ? 6 : 0); 
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);
                     break;
-                case g: 
-                    h = (b - r) / d + 2; 
+                case g:
+                    h = (b - r) / d + 2;
                     break;
-                case b: 
-                    h = (r - g) / d + 4; 
+                case b:
+                    h = (r - g) / d + 4;
                     break;
                 default:
                     break;
@@ -145,9 +145,9 @@ class App extends Component {
         var computedY = 0;
         var computedK = 0;
 
-        r = parseInt( (''+r).replace(/\s/g,''),10 ); 
-        g = parseInt( (''+g).replace(/\s/g,''),10 ); 
-        b = parseInt( (''+b).replace(/\s/g,''),10 ); 
+        r = parseInt( (''+r).replace(/\s/g,''),10 );
+        g = parseInt( (''+g).replace(/\s/g,''),10 );
+        b = parseInt( (''+b).replace(/\s/g,''),10 );
 
         if ( r==null || g==null || b==null || isNaN(r) || isNaN(g)|| isNaN(b) )
         {
@@ -214,7 +214,7 @@ class App extends Component {
                                     <form>
                                         <HEX color={this.state.color} getHex={this.getHex}/>
                                         <RGB color={rgbColor} getRgb={this.getRgb}/>
-                                        <Color color={this.state.color} getColor={this.getColor} /> 
+                                        <Color color={this.state.color} getColor={this.getColor} />
                                     </form>
                                 </div>
                                 <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
