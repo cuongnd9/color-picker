@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as actions from './../actions/index';
 
 class Color extends Component {
 	constructor(props) {
@@ -14,10 +16,10 @@ class Color extends Component {
 		return (
 			<div className="form-group">
 				<label>Select Color</label>
-				<input 
-					type="color" 
-					name="input-color" 
-					className="form-control" 
+				<input
+					type="color"
+					name="input-color"
+					className="form-control"
 					title="Color Picker"
 					value={this.props.color}
 					onChange={this.handleChange}
@@ -27,4 +29,18 @@ class Color extends Component {
 	}
 }
 
-export default Color;
+const mapStateToProps = state => {
+	return {
+		color: state.color
+	};
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		getColor: color => {
+			dispatch(actions.getHex(color));
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Color);

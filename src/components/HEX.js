@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as actions from './../actions/index';
 
 class HEX extends Component {
 	constructor(props) {
@@ -28,7 +30,7 @@ class HEX extends Component {
 		});
 		if (this.checkColor(value)) {
 			this.props.getHex(value);
-		} 
+		}
 	}
 
 	checkColor(color) {
@@ -47,9 +49,9 @@ class HEX extends Component {
 		return (
 			<div className="form-group">
 				<label>HEX</label>
-				<input 
-					type="text" 
-					className="form-control" 
+				<input
+					type="text"
+					className="form-control"
 					value={this.state.color}
 					onChange={this.handleChange}
 				/>
@@ -58,4 +60,18 @@ class HEX extends Component {
 	}
 }
 
-export default HEX;
+const mapStateToProps = state => {
+	return {
+		color: state.color
+	};
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		getHex: color => {
+			dispatch(actions.getHex(color));
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HEX);

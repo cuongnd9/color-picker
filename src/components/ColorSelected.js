@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 class ColorSelected extends Component {
 	render() {
@@ -13,5 +14,10 @@ class ColorSelected extends Component {
 	}
 }
 
-export default ColorSelected;
+const mapStateToProps = state => {
+	return {
+		color: state.color
+	};
+};
 
+export default connect(mapStateToProps, null)(ColorSelected);

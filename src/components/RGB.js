@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as actions from './../actions/index';
 
 class RGB extends Component {
 	constructor(props) {
@@ -11,13 +13,13 @@ class RGB extends Component {
 
 	componentWillMount() {
 		this.setState({
-			color: this.props.color
+			color: this.convertToRgb(this.props.color)
 		});
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			color: nextProps.color
+			color: this.convertToRgb(nextProps.color)
 		});
 	}
 
@@ -27,8 +29,8 @@ class RGB extends Component {
 			color: value
 		});
 		if (this.checkRgb(value)) {
-			this.props.getRgb(value);
-		} 
+			this.props.getRgb(this.convertToHex(value));
+		}
 	}
 
 
@@ -75,9 +77,9 @@ class RGB extends Component {
 		return (
 			<div className="form-group">
 				<label>RGB</label>
-				<input 
-					type="text" 
-					className="form-control" 
+				<input
+					type="text"
+					className="form-control"
 					value={color}
 					onChange={this.handleChange}
 				/>
@@ -86,4 +88,18 @@ class RGB extends Component {
 	}
 }
 
-export default RGB;
+const mapStateToProps = state => {
+	return {
+		color: state.color
+	};
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		getRgb: color => {
+			dispatch(actions.getHex(color));
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RGB);

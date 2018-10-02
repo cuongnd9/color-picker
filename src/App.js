@@ -5,35 +5,12 @@ import RGB from './components/RGB';
 import HEX from './components/HEX';
 import ColorSelected from './components/ColorSelected';
 import UnitColor from './components/UnitColor';
+import {connect} from 'react-redux';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            color: '#ff5959'
-        };
-        this.getColor = this.getColor.bind(this);
-        this.getHex = this.getHex.bind(this);
-        this.getRgb = this.getRgb.bind(this);
         this.showColor = this.showColor.bind(this);
-    }
-
-    getColor(color) {
-        this.setState({
-            color: color
-        });
-    }
-
-    getHex(hex) {
-        this.setState({
-            color: hex
-        });
-    }
-
-    getRgb(rgb) {
-        this.setState({
-            color: this.convertToHex(rgb)
-        });
     }
 
     convertToRgb(hex) {
@@ -178,16 +155,17 @@ class App extends Component {
     }
 
     showColor(unitName) {
-        var rgb = this.convertToRgb(this.state.color);
+      var {color} = this.props;
+        var rgb = this.convertToRgb(color);
         switch (unitName) {
             case 'HEX':
-                return this.state.color;
+                return color;
             case 'RGB':
-                return this.convertToRgb(this.state.color);
+                return this.convertToRgb(color);
             case 'HSV':
                 return this.convertToHSV(rgb);
             case 'HSL':
-                return this.convertToHSL(this.state.color);
+                return this.convertToHSL(color);
             case 'CMYK':
                 return this.convertToCMYK(rgb);
             default:
@@ -200,7 +178,6 @@ class App extends Component {
 
         var unitElements = units.map((unit, index) => <UnitColor key={index} unitName={unit} color={this.showColor(unit)}/>);
 
-        var rgbColor = this.convertToRgb(this.state.color);
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -212,13 +189,13 @@ class App extends Component {
                             <div className="panel-body">
                                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <form>
-                                        <HEX color={this.state.color} getHex={this.getHex}/>
-                                        <RGB color={rgbColor} getRgb={this.getRgb}/>
-                                        <Color color={this.state.color} getColor={this.getColor} />
+                                        <HEX/>
+                                        <RGB/>
+                                        <Color/>
                                     </form>
                                 </div>
                                 <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                    <ColorSelected color={this.state.color}/>
+                                    <ColorSelected/>
                                     {unitElements}
                                 </div>
                             </div>
@@ -230,4 +207,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		color: state.color
+	};
+};
+
+export default connect(mapStateToProps, null)(App);

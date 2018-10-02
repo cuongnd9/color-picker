@@ -10,7 +10,7 @@ class UnitColor extends Component {
                     <hr/>
                 </div>
             </div>
-		); 
+		);
 	}
 }
 
