@@ -14,7 +14,8 @@ You can see demo [here.](https://color-picker-ndc07.firebaseapp.com/)
 
 ## Built With
 
-* [Reactjs](https://reactjs.org/docs/getting-started.html)
+* [React](https://reactjs.org/docs/getting-started.html)
+* [Redux](https://redux.js.org/)
 * [Bootstrap](http://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
 ## Authors
