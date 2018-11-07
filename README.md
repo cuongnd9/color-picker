@@ -1,6 +1,6 @@
 # Color Picker
 
-A Color Picker using React.
+🌈 A Color Picker with React & Redux.
 
 ![screenshot_2018-09-09 color picker](https://user-images.githubusercontent.com/34389409/45758999-21c91800-bc51-11e8-9763-fca774cea7c6.png)
 
@@ -18,12 +18,10 @@ You can see demo [here.](https://color-picker-ndc07.firebaseapp.com/)
 * [Redux](https://redux.js.org/)
 * [Bootstrap](http://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
-## Authors
+## Author
 
-* **Nguyen Duy Cuong** - *Initial work* - [ndc07](https://github.com/ndc07)
+[ndc07](https://github.com/ndc07)💎
 
-See also the list of [contributors](https://github.com/ndc07/color-picker/contributors) who participated in this project.
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+[MIT](https://github.com/ndc07/color-picker/blob/master/LICENSE)
