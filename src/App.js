@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Color from './components/Color';
 import RGB from './components/RGB';
 import HEX from './components/HEX';
